@@ -1,5 +1,4 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#pragma once
 
 namespace hiberlite{
 
@@ -31,7 +30,6 @@ class Database : noncopyable
 		sqlid_t allocId(std::string table);
 
 		static void dbExecQuery(shared_connection con, std::string query);
-		void dbExecQuery(std::string query);
 
 		static std::vector<sqlid_t> dbSelectIds(shared_connection con, const std::string table,
 														const std::string condition, const std::string orderBy);
@@ -63,6 +61,8 @@ class Database : noncopyable
 		Model getModel();
 		inline shared_connection getConnection() { return con; }
 
+		void dbExecQuery(std::string query);
+
 		std::vector<std::string> checkModel();
 		void dropModel();
 		void createModel();
@@ -87,6 +87,3 @@ class Database : noncopyable
 };
 
 } //namespace hiberlite;
-
-
-#endif // DATABASE_H

@@ -23,7 +23,7 @@ class Scope{
 
 class Column{
 	public:
-		inline Column(std::string _n="", std::string _s="") : name(_n), storage_type(_s) {}
+		inline Column(std::string _n="", std::string _s="") : name(_n), storage_type(_s){}
 		std::string name;
 		std::string storage_type;
 };

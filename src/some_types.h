@@ -143,7 +143,7 @@ void db_atom<std::string>::loadValue(Stmt& res, Arg& arg){
 
 template<>
 inline std::string db_atom<std::string>::sqliteStorageClass(){
-	return "TEXT";
+	return "TEXT NOT NULL";
 }
 template<>
 inline void db_atom<std::string>::bindValue(sqlite3_stmt* stmt, int col){

@@ -21,13 +21,14 @@ class ExtractModel{
 		}
 
 		template<class AV, class E, class S>
-		inline void act(AV& av, collection_nvp<E,S> nvp );
+		inline void act(AV& av, collection_nvp<E,S> nvp);
 
 	protected:
 		template<class AV>
 		inline void putColumn(AV& av, std::string storage)
 		{
 			Scope scope=av.getScope();
+		
 			putNamedColumn(scope.table(), scope.prefix(), storage);
 		}
 

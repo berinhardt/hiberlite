@@ -66,7 +66,7 @@ template<class C> template<class X>
 AVisitor<C>& AVisitor<C>::operator&(sql_nvp<X> nvp)
 {
 	divePrefix(nvp.name);
-		walk(nvp.value);
+	walk(nvp.value);
 	pop();
 	return *this;
 }

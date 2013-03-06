@@ -1,6 +1,5 @@
 #ifndef BEANUPDATER_H
 #define BEANUPDATER_H
-
 namespace hiberlite{
 
 struct RowScope{
@@ -94,7 +93,7 @@ HIBERLITE_STRINGIFY_UNSIGNED_NUM(unsigned long long int)
 
 			for(int i=0;i<n;i++){
 				unsigned char cc=(unsigned char)val[i];
-				x+=sprintf(s+x,"%02X", (int)cc);
+				x += sprintf(s+x,"%02X", (int)cc);
 			}
 			sprintf(s+x,"'");
 			return s;

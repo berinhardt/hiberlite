@@ -15,6 +15,11 @@ class sql_nvp{
 		sql_nvp(std::string _name, C& _value, std::string search="") : name(_name), value(_value), search_key(search) {}
 };
 
+template<class C> inline
+sql_nvp<C> make_nvp(const char * _name, C & _value){
+    return sql_nvp<C>(_name, _value);
+}
+
 template<class E,class Stream>
 class collection_nvp{
 	public:

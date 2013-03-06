@@ -1,6 +1,6 @@
 
 #include "hiberlite.h"
-
+#include <iostream>
 namespace hiberlite{
 
 Database::Database() : mx(NULL)
@@ -69,20 +69,20 @@ void Database::createModel()
 	Model mdl=mx->getModel();
 	for(Model::iterator it=mdl.begin();it!=mdl.end();it++){
 		Table& t=it->second;
-		std::string query="CREATE TABLE "+t.name+" (";
+		std::string query="CREATE TABLE IF NOT EXISTS "+t.name+" (";
 		bool needComma=false;
 		for(std::map<std::string,Column>::iterator c=t.columns.begin();c!=t.columns.end();c++){
 			if(needComma)
 				query+=", ";
 			needComma=true;
 			Column& col=c->second;
-			query += col.name + " ";
+			query += col.name + " " + col.storage_type;
 			if(col.name==HIBERLITE_PRIMARY_KEY_COLUMN)
-				query+="INTEGER PRIMARY KEY AUTOINCREMENT";
-			else
-				query+=col.storage_type;
+				query+=" PRIMARY KEY";
+			
 		}
 		query +=");";
+		std::cout << "query " << query << std::endl;
 		dbExecQuery(query);
 	}
 }
