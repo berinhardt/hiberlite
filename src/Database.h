@@ -71,11 +71,15 @@ class Database : noncopyable
 		bean_ptr<C> loadBean(sqlid_t objId);
 
 		template<class C>
-		std::vector<sqlid_t> getBeanIds();
+        std::vector<sqlid_t> getBeanIds(std::string where, std::string orderBy);
 
 		template<class C>
 		std::vector< bean_ptr<C> > getAllBeans();
-
+        template<class C>
+        std::vector< bean_ptr<C> > getBeans(std::string where, std::string orderBy);
+        template<class C>
+        std::vector< bean_ptr<C> > getBeans(std::string where);
+    
 		template<class C>
 		bean_ptr<C> copyBean(const C& c);
 

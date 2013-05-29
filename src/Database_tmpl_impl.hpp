@@ -79,15 +79,15 @@ inline bean_ptr<C> Database::loadBean(sqlid_t id)
 }
 
 template<class C>
-std::vector<sqlid_t> Database::getBeanIds()
+    std::vector<sqlid_t> Database::getBeanIds(std::string where, std::string orderBy)
 {
-	return dbSelectIds(con, getClassName<C>(),"", "" );
+	return dbSelectIds(con, getClassName<C>(),where, orderBy );
 }
 
 template<class C>
-std::vector< bean_ptr<C> > Database::getAllBeans()
+    std::vector< bean_ptr<C> > Database::getBeans(std::string where, std::string orderBy)
 {
-	std::vector<sqlid_t> ids=getBeanIds<C>();
+	std::vector<sqlid_t> ids=getBeanIds<C>(where, orderBy);
 	size_t N=ids.size();
 	std::vector< bean_ptr<C> > ans;
 	ans.reserve(N);
@@ -95,7 +95,10 @@ std::vector< bean_ptr<C> > Database::getAllBeans()
 		ans.push_back( loadBean<C>(ids[i]) );
 	return ans;
 }
-
+template<class C>
+std::vector< bean_ptr<C> > Database::getBeans(std::string where) { return getBeans<C>(where, ""); }
+template<class C>
+std::vector< bean_ptr<C> > Database::getAllBeans() { return getBeans<C>(""); }
 
 template<class C>
 inline void Database::registerBeanClass()
