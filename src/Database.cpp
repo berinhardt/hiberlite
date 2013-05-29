@@ -82,7 +82,7 @@ void Database::createModel()
 			
 		}
 		query +=");";
-		std::cout << "query " << query << std::endl;
+		HIBERLITE_HL_DBG_DO(std::cout << "query " << query << std::endl;)
 		dbExecQuery(query);
 	}
 }
