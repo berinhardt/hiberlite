@@ -12,7 +12,7 @@ void Model::add(Table t)
 
 Table::Table()
 {
-	//add(Column(HIBERLITE_PRIMARY_KEY_COLUMN,HIBERLITE_PRIMARY_KEY_STORAGE_TYPE));
+	add(Column(HIBERLITE_PRIMARY_KEY_COLUMN,HIBERLITE_PRIMARY_KEY_STORAGE_TYPE));
 }
 
 void Table::add(Column c)
