@@ -5,7 +5,7 @@ namespace hiberlite{
 
 template<class C>
 inline void RowScope::addAssignment(const std::string name, db_atom<C>& atom){
-	int id=FirstAtom+atoms.size();
+	int id=(int) (FirstAtom+atoms.size());
 
 	addSimpleAssign(name, "?"+Transformer::toSQLiteValue(id) );
 
