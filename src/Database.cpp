@@ -1,6 +1,6 @@
 
 #include "hiberlite.h"
-#include <iostream>
+
 namespace hiberlite{
 
 Database::Database() : mx(NULL)
@@ -78,7 +78,7 @@ void Database::createModel()
 			Column& col=c->second;
 			query += col.name + " " + col.storage_type;
 			if(col.name==HIBERLITE_PRIMARY_KEY_COLUMN)
-				query+=" PRIMARY KEY";
+				query+=" PRIMARY KEY AUTOINCREMENT";
 			
 		}
 		query +=");";

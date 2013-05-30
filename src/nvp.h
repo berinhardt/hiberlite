@@ -31,6 +31,7 @@ class collection_nvp{
 class abstract_atom{
 	public:
 		inline virtual void bindValue(sqlite3_stmt* stmt, int col)=0;
+        inline virtual void printValue(std::ostream &o) { }
 		inline virtual ~abstract_atom() {}
 };
 
@@ -38,7 +39,7 @@ template<class C>
 class db_atom : public abstract_atom{
 	public:
 		C& val;
-		db_atom(C& x) : val(x) {}
+    db_atom(C& x) : val(x) { }
 		inline virtual ~db_atom() {}
 
 		inline std::string sqliteStorageClass();
@@ -47,6 +48,7 @@ class db_atom : public abstract_atom{
 		void loadValue(Stmt& res, Arg& arg);
 
 		inline virtual void bindValue(sqlite3_stmt* stmt, int col);
+        inline virtual void printValue(std::ostream &o) { o << val; }
 };
 
 } //namespace hiberlite

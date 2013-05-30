@@ -1,7 +1,7 @@
 #ifndef HIBERDEFS_H_INCLUDED
 #define HIBERDEFS_H_INCLUDED
 
-#define HIBERLITE_NVP(Field) hiberlite::make_nvp(#Field, Field)
+#define HIBERLITE_NVP(Field) hiberlite::sql_nvp<typeof(Field)>(#Field, Field)
 
 #define HIBERLITE_BASE_CLASS(ClName) hiberlite::sql_nvp< ClName >(#ClName,*((ClName*)this) )
 
@@ -19,6 +19,6 @@ std::string Database::getClassName<ClName>()	\
 #define HIBERLITE_ENTRY_INDEX_COLUMN "hiberlite_entry_indx"
 #define HIBERLITE_ID_STORAGE_CLASS "INTEGER"
 
-#define HIBERLITE_PRIMARY_KEY_STORAGE_TYPE "PRIMARYKEY"
+#define HIBERLITE_PRIMARY_KEY_STORAGE_TYPE "INTEGER"
 
 #endif // HIBERDEFS_H_INCLUDED

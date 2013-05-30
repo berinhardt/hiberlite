@@ -47,12 +47,16 @@ void UpdateBean::commitRow(shared_connection con, sqlid_t rowid)
 		sqlite3* db=con->getSQLite3Ptr();
 		const char* foob;
 		int rc=sqlite3_prepare_v2(db,curRow()->query.c_str(),-1,&stmt_ptr,&foob);
+        HIBERLITE_HL_DBG_DO(std::cout << "=====" << curRow()->query << "=====" << std::endl;)
 		database_error::database_assert(rc, con);
 	}
 	shared_stmt statement( new statement_ptr(stmt_ptr) );
 
 	for(size_t i=0;i<curRow()->atoms.size();i++){
 		curRow()->atoms[i]->bindValue(statement->get_stmt(), (int)(i+RowScope::FirstAtom));
+        HIBERLITE_HL_DBG_DO(std::cout << (int)(i+RowScope::FirstAtom) << " => ");
+        HIBERLITE_HL_DBG_DO(curRow()->atoms[i]->printValue(std::cout));
+        HIBERLITE_HL_DBG_DO(std::cout << std::endl);
 	}
 
 	{

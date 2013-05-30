@@ -58,6 +58,7 @@ inline void real_bean<C>::loadLazy()
 {
 	if(!obj && key.id!=Database::NULL_ID)
 		obj=Database::dbLoad<C>(key);
+    if (obj) obj->id = key.id;
 }
 
 template<class C>
@@ -90,7 +91,7 @@ bean_ptr<C>::bean_ptr()
 }
 
 template<class C>
-bean_ptr<C>::operator bool() const {
+bean_ptr<C>::operator bool() {
 	return get_id()!=Database::NULL_ID;
 }
 

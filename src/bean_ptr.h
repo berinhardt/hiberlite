@@ -56,7 +56,7 @@ class bean_ptr : public shared_res< real_bean<C> >
 
 		bean_ptr();
 
-		operator bool() const;
+		operator bool();
 
 		bean_ptr(const bean_ptr<C>& other);
 		bean_ptr<C>& operator=(const bean_ptr<C>& other);
